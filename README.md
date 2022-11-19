@@ -3,6 +3,7 @@ Scraper requires a json config of the pages to scrape as well as the alert setti
 Drop a config.json in /src and adhere to this schema.
 
 Config schema:
+```
 {
     "pages": [
         {            
@@ -24,8 +25,9 @@ Config schema:
         "receiver": "reviever_email"
     }
 }
+```
 
-To run: npm i && npm start
+To run: `npm i && npm start`
 
 There are 3 notification types. Found (0), Not Found (1), and Changed (2). This determines how the scraper will alert.
 For instance, should the scraper alert if it found the desired html element or if it was unable to find it.
