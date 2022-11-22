@@ -33,7 +33,7 @@ export class Page {
         try {
             console.log(`Scraping ${this.name} (${this.url})`);
             const response = await fetch(this.url, {method: 'GET', headers: {
-                'User-Agent': 'PostmanRuntime/7.26.8',
+                'User-Agent': 'HelloUserAgent/0.1.3',
                 'Accept-Encoding': 'gzip'
             }});
             const html = await response.text();
@@ -62,13 +62,13 @@ export class Page {
         switch(poi.notificationType) {
             case NotificationType.Found:
                 if(poiHtml) {
-                    console.log(chalk.bgGreen.whiteBright.bold(' Found element. Something may have changed! '));
+                    console.log(chalk.bgGreen.whiteBright.bold(' Found element. Something may have changed! '), true);
                     return true;
                 }
                 break;
             case NotificationType.NotFound:
                 if(!poiHtml) {
-                    console.log(chalk.bgGreen.whiteBright.bold(' Cannot find element. Something may have changed! '));
+                    console.log(chalk.bgGreen.whiteBright.bold(' Cannot find element. Something may have changed! '), true);
                     return true;
                 } 
                 break;
@@ -79,12 +79,14 @@ export class Page {
                 }
 
                 if(poi.oldHtml !== poiHtml) {
-                    console.log(chalk.bgGreen.whiteBright.bold(' Element children changed! '));
+                    console.log(chalk.bgGreen.whiteBright.bold(' Element children changed! '), true);
+                    console.log(`Old: ${poi.oldHtml}`);
+                    console.log(`New: ${poiHtml}`);
                     return true;
                 }
                 break;
         }
-        console.log(' No updates... ');
+        console.log('No updates...');
         return false;
     }
 }

@@ -1,6 +1,7 @@
 {
   "scripts": {
     "start": "npx tsc && node dist/index.js",
+    "docker-start": "npx tsc && FORCE_COLOR=1 node dist/index.js",
     "dev": "nodemon --watch 'src/**/*.ts' --exec ts-node src/index.ts"
   },
   "devDependencies": {
